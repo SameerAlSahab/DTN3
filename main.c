@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -28,11 +29,21 @@ int main() {
     b1.payload = "Hello aliens!!! This message is sent from EWU to mars!";
     b1.payload_size = 5000.12; // KB
     
+    vector<Bundle> queue;
+    
+    queue.push_back(b1);
+    
+    cout << "Bundles left to send: " << queue.size() << endl;
+    
     string full_eid = scheme + b1.source;
     
     cout << "Full EID is " << full_eid << endl;
     cout << "EID length is " << full_eid.length() << endl;
     
-    b1.print_info();
+    for (int i = 0; i < queue.size(); i++) {
+        cout << "Bundle No. #" << i + 1 << endl;
+        queue[i].print_info();
+    }
     
+    return 0;
 }
